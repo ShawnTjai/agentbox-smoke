@@ -9,7 +9,7 @@ Guidance for agents working in this repository.
 ## Commands
 
 - **Test:** `bash tests/run.sh`
-  - Runs the smoke test (currently checks that `README.md` has the expected title). CI runs this same command via `.github/workflows/tests.yml` (job `tests`), which is a required status check on `main`.
+  - Discovers and runs every `tests/*.test.sh` file (currently `tests/readme.test.sh`, which checks that `README.md` has the expected title). The runner fails if no test files are found, so the suite can never pass empty. Add new checks as `tests/<name>.test.sh`. CI runs this same command via `.github/workflows/tests.yml` (job `tests`), which is a required status check on `main`.
 - **Lint:** `bash tests/lint.sh`
   - Runs [`shellcheck`](https://www.shellcheck.net/) over every shell script in `tests/`. The `tests` CI job is unchanged; run this locally before pushing shell changes. `shellcheck` is preinstalled on GitHub `ubuntu-latest` runners.
 - **Format:** `bash tests/format.sh`
